@@ -1,0 +1,51 @@
+﻿<Window x:Class="PS_Carfax.UI.Views.AddToYearlyResultsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS_Carfax.UI.Views"
+        mc:Ignorable="d"
+        Title="AddToYearlyResultsView" Height="450" Width="800">
+    <Grid Background="#f2f2f2" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- Add more rows as needed -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="VIN:"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="txtVIN" Margin="10" Text="{Binding History.VIN, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Year:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtYear" Margin="10" Text="{Binding History.YearGenerated, Mode=TwoWay}"/>
+
+
+        <!-- Owners Button -->
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Owners:"/>
+        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="+ Add Owner" Name="btnAddOwner" Margin="10" Background="#007acc" Foreground="White" Command="{Binding AddOwnerCommand}"/>
+
+        <!-- Vehicles Button -->
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Vehicles:"/>
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="+ Add Vehicle" Name="btnAddVehicle" Margin="10" Background="#007acc" Foreground="White" Command="{Binding AddVehicleCommand}"/>
+
+        <!-- Service Records -->
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Service Records:"/>
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="+ Add Service Records" Name="btnAddServiceRecord" Margin="10" Background="#007acc" Foreground="White" Command="{Binding AddServiceRecordCommand}"/>
+
+        <!-- Accidents -->
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Text="Accidents:"/>
+        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="+ Add Accident" Name="btnAddAccident" Margin="10" Background="#007acc" Foreground="White" Command="{Binding AddAccidentCommand}"/>
+
+        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Create" Name="btnAdd" Margin="10" Background="#007acc" Foreground="White" Command="{Binding CreateCommand}"/>
+    </Grid>
+</Window>

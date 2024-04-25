@@ -1,0 +1,59 @@
+﻿<Window x:Class="PS_Carfax.UI.Views.CreateVehicleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vehicle View" Height="450" Width="800">
+    <Grid Background="#f2f2f2" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Bindings for VIN -->
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="VIN:"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="txtVIN" Margin="10" Text="{Binding Vehicle.VIN, Mode=TwoWay}"/>
+
+        <!-- Bindings for Make -->
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Make:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtMake" Margin="10" Text="{Binding Vehicle.Make, Mode=TwoWay}"/>
+
+        <!-- Bindings for Model -->
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Model:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="txtModel" Margin="10" Text="{Binding Vehicle.Model, Mode=TwoWay}"/>
+
+        <!-- Bindings for Year -->
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Year:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="txtYear" Margin="10" Text="{Binding Vehicle.Year, Mode=TwoWay}"/>
+
+        <!-- Bindings for Color -->
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Color:"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="txtColor" Margin="10" Text="{Binding Vehicle.Color, Mode=TwoWay}"/>
+
+        <!-- Bindings for Mileage -->
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Text="Mileage:"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="txtMileage" Margin="10" Text="{Binding Vehicle.Mileage, Mode=TwoWay}"/>
+
+        <!-- Bindings for Engine Type -->
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Text="Engine Type:"/>
+        <ComboBox Grid.Row="6" Grid.Column="1" Name="cmbEngineType" Margin="10" ItemsSource="{ Binding EngineTypes }" SelectedItem="{Binding Vehicle.EngineType, Mode=TwoWay}"/>
+
+        <!-- Bindings for Transmission Type -->
+        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Text="Transmission Type:"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" Name="cmbTransmissionType" Margin="10" ItemsSource="{ Binding TransmissionTypes }" SelectedItem="{Binding Vehicle.TransmissionType, Mode=TwoWay}"/>
+
+        <!-- Command Binding for Create Button -->
+        <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Content="Create" Name="btnCreate" Margin="10" Background="#007acc" Foreground="White" Command="{Binding CreateCommand}"/>
+
+    </Grid>
+</Window>

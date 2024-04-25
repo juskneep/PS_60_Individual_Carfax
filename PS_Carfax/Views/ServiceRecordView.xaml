@@ -1,0 +1,33 @@
+﻿<Window x:Class="PS_Carfax.UI.Views.ServiceRecordView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Service Record View" Height="450" Width="800">
+    <Grid Background="#f2f2f2" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Date:"/>
+        <DatePicker Grid.Row="0" Grid.Column="1" Name="dpDate" Margin="10" SelectedDate="{Binding ServiceRecord.Date, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Description:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtDescription" Margin="10" Text="{Binding ServiceRecord.Description, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Mileage at Service:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="txtMileageAtService" Margin="10" Text="{Binding ServiceRecord.MileageAtService, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Cost:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="txtCost" Margin="10" Text="{Binding ServiceRecord.Cost, Mode=TwoWay}"/>
+
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Create" Name="btnCreate" Margin="10" Background="#007acc" Foreground="White" Command="{Binding CreateCommand}"/>
+    </Grid>
+</Window>

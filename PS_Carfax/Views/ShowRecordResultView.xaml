@@ -1,0 +1,94 @@
+﻿<Window x:Class="PS_Carfax.UI.Views.ShowRecordResultView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS_Carfax.UI.Views"
+        mc:Ignorable="d"
+        Title="ShowRecordResultView" Height="450" Width="800">
+    <Grid Background="#f2f2f2" Margin="20">
+        <TabControl>
+            <!-- Vehicle Table -->
+            <TabItem Header="Vehicle">
+                <ListView Name="lvVehicle" Margin="10" ItemsSource="{Binding Vehicles}" Visibility="{Binding VehicleVisibility}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="VIN" DisplayMemberBinding="{Binding VIN}"/>
+                            <GridViewColumn Header="Make" DisplayMemberBinding="{Binding Make}"/>
+                            <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Model}"/>
+                            <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}"/>
+                            <GridViewColumn Header="Color" DisplayMemberBinding="{Binding Color}"/>
+                            <GridViewColumn Header="Mileage" DisplayMemberBinding="{Binding Mileage}"/>
+                            <GridViewColumn Header="EngineType" DisplayMemberBinding="{Binding EngineType}"/>
+                            <GridViewColumn Header="TransmissionType" DisplayMemberBinding="{Binding TransmissionType}"/>
+                        </GridView>
+                    </ListView.View>
+                   <!-- <ListView.Effect> -->
+                      <!--  <BlurEffect Radius="5" /> -->
+                   <!-- </ListView.Effect> -->
+                </ListView>
+            </TabItem>
+
+            <!-- Owner Table -->
+            <TabItem Header="Owner">
+                <ListView Name="lvOwner" Margin="10" ItemsSource="{ Binding Owners }" Visibility="{Binding OwnerVisibility}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"/>
+                            <GridViewColumn Header="ContactInfo" DisplayMemberBinding="{Binding ContactInfo}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <!-- Accident Table -->
+            <TabItem Header="Accident">
+                <ListView Name="lvAccident" Margin="10" ItemsSource="{ Binding Accidents }" Visibility="{Binding AccidentVisibility}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
+                            <GridViewColumn Header="Severity" DisplayMemberBinding="{Binding Severity}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <!-- ServiceRecord Table -->
+            <TabItem Header="ServiceRecord">
+                <ListView Name="lvServiceRecord" Margin="10" ItemsSource="{ Binding ServiceRecords }" Visibility="{Binding ServiceRecordVisibility}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
+                            <GridViewColumn Header="MileageAtService" DisplayMemberBinding="{Binding MileageAtService}"/>
+                            <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Cost}"/>
+                        </GridView>
+                    </ListView.View>
+                    <!-- <ListView.Effect> -->
+                     <!--   <BlurEffect Radius="5" /> -->
+
+                   <!-- </ListView.Effect> -->
+                </ListView>
+            </TabItem>
+
+            <!-- History Table -->
+            <TabItem Header="History">
+                <ListView Name="lvHistory" Margin="10" ItemsSource="{Binding Histories}" SelectionChanged="lvHistory_SelectionChanged">
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="VIN" DisplayMemberBinding="{Binding VIN}"/>
+                            <GridViewColumn Header="YearGenerated" DisplayMemberBinding="{Binding YearGenerated}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

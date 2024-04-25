@@ -1,0 +1,52 @@
+﻿<Window x:Class="PS_Carfax.UI.Views.SearchRecordView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS_Carfax.UI.Views"
+        mc:Ignorable="d"
+        Title="SearchRecordView" Height="450" Width="800">
+    <Grid Background="#f2f2f2" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- Add more rows as needed -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Labels and Inputs -->
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Make:"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="txtMake" Margin="10" Text="{Binding Make, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Model:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="txtModel" Margin="10" Text="{Binding Model, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Year:"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" Name="dpYear" Margin="10" SelectedDate="{Binding Year, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Owner Name:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="txtOwnerName" Margin="10" Text="{Binding OwnerName, Mode=TwoWay}"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Free Text Search (JSON-like, in the first input solely the property you want to query):"/>
+        <TextBox Grid.Row="5" Grid.Column="0" Name="fieldName" Width="200" Margin="10" Text="{Binding FreeTextField.FieldName, Mode=TwoWay}"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="fieldValue" Width="200" Margin="10" Text="{Binding FreeTextField.Value, Mode=TwoWay}"/>
+
+        <!-- Buttons -->
+        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="Add Free Text Field" Name="btnAddFreeTextField" Margin="10" Background="#007acc" Foreground="White" Command="{Binding AddFreeTextFieldCommand}"/>
+        <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Content="Search" Name="btnSearch" Margin="10" Background="#007acc" Foreground="White" Command="{Binding SearchCommand}"/>
+
+        <!-- Validation Messages -->
+        <TextBlock Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Name="txtValidationMessage" Foreground="Red" Margin="10" Text="{Binding ValidationMessage}"/>
+    </Grid>
+</Window>

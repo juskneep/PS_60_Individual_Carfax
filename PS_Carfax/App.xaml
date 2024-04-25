@@ -1,0 +1,9 @@
+﻿<Application x:Class="PS_Carfax.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PS_Carfax"
+             StartupUri="Views/SearchRecordView.xaml">
+    <Application.Resources>
+
+    </Application.Resources>
+</Application>
