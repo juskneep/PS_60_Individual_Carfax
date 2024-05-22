@@ -119,11 +119,11 @@ namespace PS_Carfax.UI.ViewModels
             showRecordView.Show();
         }
 
-        private bool MatchFreeTextField(History history, FreeTextField field)
+        private bool MatchFreeTextField<T>(T entity, FreeTextField field)
         {
             try
             {
-                var historyValue = GetHistoryValue(history, field.FieldName);
+                var entityValue = GetEntityValue(entity, field.FieldName);
 
                 string propName;
                 string propValue;
@@ -140,60 +140,25 @@ namespace PS_Carfax.UI.ViewModels
                     return false;
                 }
 
-                // Handle basic properties
-                if (historyValue is string)
+                if (entityValue is string)
                 {
-                    return historyValue?.ToString() == field.Value?.ToString();
+                    return entityValue?.ToString() == field.Value?.ToString();
                 }
-                else if (historyValue is ICollection<Accident>)
+                else if (entityValue is IEnumerable<T>)
                 {
-                    foreach (var accident in (ICollection<Accident>)historyValue)
+                    foreach (var item in (IEnumerable<T>)entityValue)
                     {
-                        if (accident.GetType().GetProperty(propName) != null)
+                        if (item.GetType().GetProperty(propName) != null)
                         {
-                            var accidentValue = accident.GetType().GetProperty(propName).GetValue(accident);
+                            var itemValue = item.GetType().GetProperty(propName).GetValue(item);
 
-                            if (accidentValue?.ToString().ToLower() == propValue?.ToString().ToLower())
+                            if (itemValue?.ToString().ToLower() == propValue?.ToString().ToLower())
                             {
                                 return true;
                             }
                         }
                     }
-                    ValidationMessage = $"No matching service record found in history (based on service type)";
-                    return false;
-                }
-                else if (historyValue is ICollection<Owner>)
-                {
-                    foreach (var owner in (ICollection<Owner>)historyValue)
-                    {
-                        if (owner.GetType().GetProperty(propName) != null)
-                        {
-                            var ownerValue = owner.GetType().GetProperty(propName).GetValue(owner);
-
-                            if (ownerValue?.ToString().ToLower() == propValue?.ToString().ToLower())
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    ValidationMessage = $"No matching service record found in history (based on service type)";
-                    return false;
-                }
-                else if (historyValue is ICollection<ServiceRecord>)
-                {
-                    foreach (var serviceRecord in (ICollection<Owner>)historyValue)
-                    {
-                        if (serviceRecord.GetType().GetProperty(propName) != null)
-                        {
-                            var serviceRecordValue = serviceRecord.GetType().GetProperty(propName).GetValue(serviceRecord);
-
-                            if (serviceRecordValue?.ToString().ToLower() == propValue?.ToString().ToLower())
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                    ValidationMessage = $"No matching service record found in history (based on service type)";
+                    ValidationMessage = $"No matching record found in entity (based on property type)";
                     return false;
                 }
                 else
@@ -204,10 +169,21 @@ namespace PS_Carfax.UI.ViewModels
             }
             catch (KeyNotFoundException)
             {
-                ValidationMessage = $"History doesn't have a field named '{field.FieldName}'";
+                ValidationMessage = $"Entity doesn't have a field named '{field.FieldName}'";
                 return false;
             }
         }
+
+        private object GetEntityValue<T>(T entity, string fieldName)
+        {
+            var property = entity.GetType().GetProperty(fieldName);
+            if (property == null)
+            {
+                throw new KeyNotFoundException($"Property '{fieldName}' not found on type '{typeof(T).Name}'");
+            }
+            return property.GetValue(entity);
+        }
+
 
         private object GetHistoryValue(History history, string fieldName)
         {
